@@ -1,6 +1,6 @@
-# bsim
+# Bravais Solvers
 
-供 Bravais 使用的开源求解源码仓。
+仓库名 `bravais-solvers`，简称 `bsim`。供 Bravais 使用的开源求解源码仓。
 
 基础版本面向标准 [PRISMS-PF](https://github.com/PRISMS-Center/phaseField)
 和 [DAMASK](https://github.com/damask-multiphysics/DAMASK)。具体版本、原生求解程序、
