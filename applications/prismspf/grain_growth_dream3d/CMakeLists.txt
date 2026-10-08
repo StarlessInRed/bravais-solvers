@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.25)
+project(grain_growth_dream3d LANGUAGES CXX)
+find_package(PRISMS-PF 4.0 REQUIRED CONFIG)
+add_subdirectory(../../../modules/grain_structure grain_structure)
+add_executable(grain_growth_dream3d main.cc ../../../modules/grain_growth/model.cpp)
+target_compile_features(grain_growth_dream3d PRIVATE cxx_std_20)
+target_link_libraries(grain_growth_dream3d PRIVATE prisms_grain_structure)
+install(TARGETS grain_growth_dream3d RUNTIME DESTINATION bin)

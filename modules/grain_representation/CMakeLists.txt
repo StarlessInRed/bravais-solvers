@@ -1,0 +1,13 @@
+add_library(bravais_grain_representation STATIC identity.cpp tracking.cpp remapping.cpp io.cpp)
+target_compile_features(bravais_grain_representation PUBLIC cxx_std_20)
+target_include_directories(bravais_grain_representation PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/..)
+
+add_library(bravais_grain_representation_prismspf STATIC prismspf/field_access.cpp)
+target_compile_features(bravais_grain_representation_prismspf PUBLIC cxx_std_20)
+target_link_libraries(bravais_grain_representation_prismspf PUBLIC bravais_grain_representation PRISMS-PF::prisms_pf)
+
+if(BUILD_TESTING)
+  add_executable(bravais_grain_representation_tests tests.cpp)
+  target_link_libraries(bravais_grain_representation_tests PRIVATE bravais_grain_representation)
+  add_test(NAME grain_representation COMMAND bravais_grain_representation_tests)
+endif()

@@ -1,0 +1,13 @@
+cmake_minimum_required(VERSION 3.25)
+project(grain_growth_gnd LANGUAGES CXX)
+# Upstream v4.0.1 reports package version 4.0.0; pin the source revision at install time.
+find_package(PRISMS-PF 4.0 REQUIRED CONFIG)
+include(CTest)
+add_subdirectory(../../../modules/grain_representation grain_representation)
+add_subdirectory(../../../modules/grain_growth grain_growth)
+set(DEFECT_RECOVERY_SOURCE no_recovery.cpp)
+add_subdirectory(../../../modules/defect_energy defect_energy)
+add_executable(grain_growth_gnd main.cc)
+target_compile_features(grain_growth_gnd PRIVATE cxx_std_20)
+target_link_libraries(grain_growth_gnd PRIVATE grain_growth_prismspf bravais_grain_representation_prismspf bravais_defect_energy_prismspf)
+install(TARGETS grain_growth_gnd RUNTIME DESTINATION bin)
